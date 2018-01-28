@@ -21,6 +21,14 @@ public class Box {
         this.weight = weight;
         this.truck = -1;
     }
+
+    public float getVolume() {
+        return volume;
+    }
+
+    public float getWeight() {
+        return weight;
+    }
     
     public int getTruck() {
         return truck;

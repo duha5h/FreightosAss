@@ -6,16 +6,17 @@ package Freightos24Ass;
  * @author duhash
  */
 public class Box {
-    private int volume;
-    private int weight;
+    private float volume;
+    private float weight;
     private int truck;
 
+    
     public Box() {
     }
     
     
     
-    public Box(int volume, int weight) {
+    public Box(float volume, float weight) {
         this.volume = volume;
         this.weight = weight;
         this.truck = -1;

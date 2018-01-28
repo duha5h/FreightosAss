@@ -226,9 +226,9 @@ public class MainGui extends javax.swing.JFrame {
             }
             
             int currTruck = 0;
-            for (LinkedList range : ranges) {
-                for (int j = 0; j < range.size(); j++) {
-                    int tempIndex = (Integer) range.get(j);
+            for (int k = ranges.length - 1; k >= 0; k--) {
+                for (int j = 0; j < ranges[k].size(); j++) {
+                    int tempIndex = (Integer) ranges[k].get(j);
                     while(true){
                     if((trucks[currTruck].getTotalVolume() + boxes[tempIndex].getVolume()) <= 100){
                         trucks[currTruck].getBoxes().add(boxes[tempIndex]);

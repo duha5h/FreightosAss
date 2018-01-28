@@ -13,6 +13,8 @@ public class Box {
     public Box() {
     }
     
+    
+    
     public Box(int volume, int weight) {
         this.volume = volume;
         this.weight = weight;

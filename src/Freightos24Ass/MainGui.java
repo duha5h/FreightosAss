@@ -48,7 +48,7 @@ public class MainGui extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         test = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        result = new javax.swing.JTextPane();
+        resultTA = new javax.swing.JTextPane();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,8 +92,9 @@ public class MainGui extends javax.swing.JFrame {
         });
         jToolBar1.add(test);
 
-        result.setEditable(false);
-        jScrollPane3.setViewportView(result);
+        resultTA.setEditable(false);
+        resultTA.setAutoscrolls(false);
+        jScrollPane3.setViewportView(resultTA);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,44 +129,75 @@ public class MainGui extends javax.swing.JFrame {
 
     private void testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testActionPerformed
         // TODO add your handling code here:
-        float min = Integer.MAX_VALUE, max = 0;
-        for (Truck truck : trucks) {
-            if(truck.getTotalWeight() > max){
-                max = truck.getTotalWeight();
-            }
-            
-            if(truck.getTotalWeight() < min){
-                min = truck.getTotalWeight();
-            }
-            
-            if(truck.getTotalVolume() > 100){
-                 JOptionPane.showMessageDialog(this,
-                         "The volume of truck must be less than 100, but it is " + truck.getTotalVolume(), 
+        
+        String[] testResult = resultStr.toString().split(" ");
+        int truckNumber = 0;
+        for (int i = 0; i < testResult.length; i++) 
+        {
+            truckNumber = Integer.parseInt(testResult[i]);
+            if(truckNumber == -1 || truckNumber >= 100){
+                JOptionPane.showMessageDialog(this,
+                         "The box " + i + " is assigned to invalid truck", 
                          "Problem",
                     0);
                  System.exit(0);
-            }
-        }
-        
-            JOptionPane.showMessageDialog(this,
-                         "All trucks has a volume less than 100, good job", 
-                         "",
-                    1);
-            
-            for (Box box : boxes) {
-            if(box.getTruck() == -1 || box.getTruck() >= 100){
-                 JOptionPane.showMessageDialog(this,
-                         "This box is assigned to invalid truck", 
+            }else{
+                if(trucks[truckNumber].getTotalVolume() > 100){
+                    JOptionPane.showMessageDialog(this,
+                         "The volume of truck must be less than 100, but in truck " + truckNumber 
+                                 + " is " + trucks[truckNumber].getTotalVolume(), 
                          "Problem",
                     0);
-                 System.exit(0);
+                    System.exit(0);
+
+                }
             }
         }
         
-            JOptionPane.showMessageDialog(this,
-                         "All the boxes are assigned to valid trucks, good job", 
-                         "",
+        JOptionPane.showMessageDialog(this,
+                         "All boxes are assigned to valid truck, and There is no truck has a volume "
+                                 + "greater then 100", 
+                         "Congratulations!",
                     1);
+        
+//        float min = Integer.MAX_VALUE, max = 0;
+//        for (Truck truck : trucks) {
+//            if(truck.getTotalWeight() > max){
+//                max = truck.getTotalWeight();
+//            }
+//            
+//            if(truck.getTotalWeight() < min){
+//                min = truck.getTotalWeight();
+//            }
+//            
+//            if(truck.getTotalVolume() > 100){
+//                 JOptionPane.showMessageDialog(this,
+//                         "The volume of truck must be less than 100, but it is " + truck.getTotalVolume(), 
+//                         "Problem",
+//                    0);
+//                 System.exit(0);
+//            }
+//        }
+//        
+//            JOptionPane.showMessageDialog(this,
+//                         "All trucks has a volume less than 100, good job", 
+//                         "",
+//                    1);
+//            
+//            for (Box box : boxes) {
+//            if(box.getTruck() == -1 || box.getTruck() >= 100){
+//                 JOptionPane.showMessageDialog(this,
+//                         "This box is assigned to invalid truck", 
+//                         "Problem",
+//                    0);
+//                 System.exit(0);
+//            }
+//        }
+//        
+//            JOptionPane.showMessageDialog(this,
+//                         "All the boxes are assigned to valid trucks, good job", 
+//                         "",
+//                    1);
             
     }//GEN-LAST:event_testActionPerformed
 
@@ -178,6 +210,7 @@ public class MainGui extends javax.swing.JFrame {
     Box[] boxes;
     LinkedList[] ranges = new LinkedList[10];
     Truck[] trucks = new Truck[100];
+    StringBuilder resultStr;
     private void open(File file) {
         try {
 
@@ -254,13 +287,13 @@ public class MainGui extends javax.swing.JFrame {
                 }
             }
             
-            StringBuilder result = new StringBuilder();
+            resultStr = new StringBuilder();
             
             for (Box boxe : boxes) {
-                result.append(boxe.getTruck()).append(" ");
+                resultStr.append(boxe.getTruck()).append(" ");
             }
             
-            this.result.setText(result.toString());
+            resultTA.setText(resultStr.toString());
             
             in.close();
         } catch (Exception e) {
@@ -313,7 +346,7 @@ public class MainGui extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JButton open;
-    private javax.swing.JTextPane result;
+    private javax.swing.JTextPane resultTA;
     private javax.swing.JButton test;
     // End of variables declaration//GEN-END:variables
 

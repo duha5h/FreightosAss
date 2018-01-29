@@ -93,7 +93,6 @@ public class MainGui extends javax.swing.JFrame {
         jToolBar1.add(test);
 
         resultTA.setEditable(false);
-        resultTA.setAutoscrolls(false);
         jScrollPane3.setViewportView(resultTA);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

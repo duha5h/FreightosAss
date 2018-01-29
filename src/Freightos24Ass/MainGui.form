@@ -121,7 +121,6 @@
         <Component class="javax.swing.JTextPane" name="resultTA">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
-            <Property name="autoscrolls" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
